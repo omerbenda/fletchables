@@ -1,5 +1,6 @@
 package com.fletchables;
 
+import com.fletchables.init.ModEntityTypes;
 import com.fletchables.init.ModItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -9,5 +10,6 @@ public class FletchablesMod implements ModInitializer {
   @Override
   public void onInitialize() {
     ModItems.initialize();
+    ModEntityTypes.initialize();
   }
 }
