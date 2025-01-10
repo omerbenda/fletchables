@@ -1,6 +1,6 @@
 package com.fletchables.items;
 
-import com.fletchables.entity.ExplosiveArrowEntity;
+import com.fletchables.entity.EnderArrowEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
@@ -12,24 +12,24 @@ import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class ExplosiveArrowItem extends ArrowItem {
-  public ExplosiveArrowItem(Item.Settings settings) {
+public class EnderArrowItem extends ArrowItem {
+  public EnderArrowItem(Item.Settings settings) {
     super(settings);
   }
 
   @Override
   public PersistentProjectileEntity createArrow(
       World world, ItemStack stack, LivingEntity shooter, @Nullable ItemStack shotFrom) {
-    return new ExplosiveArrowEntity(shooter, world, stack.copyWithCount(1), shotFrom);
+    return new EnderArrowEntity(shooter, world, stack.copyWithCount(1), shotFrom);
   }
 
   @Override
   public ProjectileEntity createEntity(
       World world, Position pos, ItemStack stack, Direction direction) {
-    ExplosiveArrowEntity explosiveArrowEntity =
-        new ExplosiveArrowEntity(
+    EnderArrowEntity enderArrowEntity =
+        new EnderArrowEntity(
             pos.getX(), pos.getY(), pos.getZ(), world, stack.copyWithCount(1), (ItemStack) null);
-    explosiveArrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
-    return explosiveArrowEntity;
+    enderArrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
+    return enderArrowEntity;
   }
 }

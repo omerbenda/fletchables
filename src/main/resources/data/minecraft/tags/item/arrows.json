@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "fletchables:explosive_arrow"
+    "fletchables:explosive_arrow",
+    "fletchables:ender_arrow"
   ]
 }

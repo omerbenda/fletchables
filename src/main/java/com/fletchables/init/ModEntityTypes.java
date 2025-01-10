@@ -1,6 +1,7 @@
 package com.fletchables.init;
 
 import com.fletchables.FletchablesMod;
+import com.fletchables.entity.EnderArrowEntity;
 import com.fletchables.entity.ExplosiveArrowEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -19,6 +20,14 @@ public class ModEntityTypes {
               .maxTrackingRange(4)
               .trackingTickInterval(20),
           "explosive_arrow");
+  public static final EntityType<EnderArrowEntity> ENDER_ARROW_ENTITY =
+      register(
+          EntityType.Builder.<EnderArrowEntity>create(EnderArrowEntity::new, SpawnGroup.MISC)
+              .dimensions(0.5F, 0.5F)
+              .eyeHeight(0.13F)
+              .maxTrackingRange(4)
+              .trackingTickInterval(20),
+          "ender_arrow");
 
   public static void initialize() {}
 
