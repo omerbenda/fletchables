@@ -37,6 +37,6 @@ public class BlockEvents {
     return new SimpleNamedScreenHandlerFactory(
         (syncId, inventory, player) ->
             new FletchingScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos)),
-        Text.literal("placeholder"));
+        Text.translatable("block.minecraft.fletching_table"));
   }
 }
