@@ -1,8 +1,8 @@
 package com.fletchables.init;
 
 import com.fletchables.FletchablesMod;
-import com.fletchables.entity.EnderArrowEntity;
-import com.fletchables.entity.ExplosiveArrowEntity;
+import com.fletchables.entities.EnderArrowEntity;
+import com.fletchables.entities.ExplosiveArrowEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;

@@ -1,6 +1,6 @@
 package com.fletchables.items;
 
-import com.fletchables.entity.EnderArrowEntity;
+import com.fletchables.entities.EnderArrowEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;

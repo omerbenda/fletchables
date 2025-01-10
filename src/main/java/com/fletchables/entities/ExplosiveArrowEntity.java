@@ -1,4 +1,4 @@
-package com.fletchables.entity;
+package com.fletchables.entities;
 
 import com.fletchables.init.ModEntityTypes;
 import com.fletchables.init.ModItems;
