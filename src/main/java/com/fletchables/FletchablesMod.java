@@ -3,6 +3,7 @@ package com.fletchables;
 import com.fletchables.init.ModEntityTypes;
 import com.fletchables.init.ModEvents;
 import com.fletchables.init.ModItems;
+import com.fletchables.init.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
 
 public class FletchablesMod implements ModInitializer {
@@ -12,6 +13,7 @@ public class FletchablesMod implements ModInitializer {
   public void onInitialize() {
     ModItems.initialize();
     ModEntityTypes.initialize();
+    ModScreenHandlers.initialize();
     ModEvents.initialize();
   }
 }
