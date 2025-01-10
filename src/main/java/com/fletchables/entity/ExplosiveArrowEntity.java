@@ -59,6 +59,6 @@ public class ExplosiveArrowEntity extends PersistentProjectileEntity {
         false,
         World.ExplosionSourceType.TNT);
 
-    this.kill();
+    this.discard();
   }
 }

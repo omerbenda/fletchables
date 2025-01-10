@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.world.TeleportTarget;
@@ -36,13 +37,13 @@ public class EnderArrowEntity extends PersistentProjectileEntity {
   @Override
   protected void onHit(LivingEntity target) {
     super.onHit(target);
-    teleportOwner();
+    this.teleportOwner();
   }
 
   @Override
   protected void onBlockHit(BlockHitResult blockHitResult) {
     super.onBlockHit(blockHitResult);
-    teleportOwner();
+    this.teleportOwner();
   }
 
   private void teleportOwner() {
@@ -61,5 +62,10 @@ public class EnderArrowEntity extends PersistentProjectileEntity {
               owner.getPitch(),
               TeleportTarget.NO_OP));
     }
+  }
+
+  @Override
+  protected ItemStack asItemStack() {
+    return super.asItemStack().withItem(Items.ARROW);
   }
 }
