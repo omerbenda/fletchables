@@ -5,17 +5,20 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.screen.slot.CraftingResultSlot;
 import net.minecraft.screen.slot.Slot;
 
 public class FletchingScreenHandler extends ScreenHandler {
   private final Inventory inventory;
   private final ScreenHandlerContext context;
   private final RecipeInputInventory input;
+  private final CraftingResultInventory result;
 
   public FletchingScreenHandler(int syncId, PlayerInventory inventory) {
     this(syncId, inventory, ScreenHandlerContext.EMPTY);
@@ -28,9 +31,11 @@ public class FletchingScreenHandler extends ScreenHandler {
     this.inventory = inventory;
     this.context = context;
     this.input = new CraftingInventory(this, 4, 1);
+    this.result = new CraftingResultInventory();
 
     this.addInventorySlots();
     this.addCraftingSlots();
+    this.addSlot(new CraftingResultSlot(inventory.player, this.input, this.result, 0, 147, 35));
   }
 
   @Override
