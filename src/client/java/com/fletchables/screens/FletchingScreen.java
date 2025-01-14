@@ -17,6 +17,13 @@ public class FletchingScreen extends HandledScreen<FletchingScreenHandler> {
   }
 
   @Override
+  public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+    super.render(context, mouseX, mouseY, delta);
+
+    this.drawMouseoverTooltip(context, mouseX, mouseY);
+  }
+
+  @Override
   protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
     int yStart = (this.height - this.backgroundHeight) / 2;
     context.drawTexture(TEXTURE, this.x, yStart, 0, 0, this.backgroundWidth, this.backgroundHeight);
