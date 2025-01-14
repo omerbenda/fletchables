@@ -1,6 +1,10 @@
 package com.fletchables.screenhandlers;
 
+import com.fletchables.init.ModRecipeTypes;
 import com.fletchables.init.ModScreenHandlers;
+import com.fletchables.recipes.FletchingRecipe;
+import com.fletchables.screenhandlers.slots.FletchingResultSlot;
+import java.util.Optional;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -9,16 +13,21 @@ import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
+import net.minecraft.recipe.RecipeEntry;
+import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
-import net.minecraft.screen.slot.CraftingResultSlot;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.world.World;
 
 public class FletchingScreenHandler extends ScreenHandler {
   private final Inventory inventory;
   private final ScreenHandlerContext context;
   private final RecipeInputInventory input;
   private final CraftingResultInventory result;
+  private final PlayerEntity player;
 
   public FletchingScreenHandler(int syncId, PlayerInventory inventory) {
     this(syncId, inventory, ScreenHandlerContext.EMPTY);
@@ -32,10 +41,53 @@ public class FletchingScreenHandler extends ScreenHandler {
     this.context = context;
     this.input = new CraftingInventory(this, 4, 1);
     this.result = new CraftingResultInventory();
+    this.player = inventory.player;
 
     this.addInventorySlots();
     this.addCraftingSlots();
-    this.addSlot(new CraftingResultSlot(inventory.player, this.input, this.result, 0, 147, 35));
+    this.addSlot(new FletchingResultSlot(inventory.player, this.input, this.result, 0, 147, 35));
+  }
+
+  @Override
+  public void onContentChanged(Inventory inventory) {
+    this.context.run((world, pos) -> updateResult(this, world, player, input, result));
+  }
+
+  protected static void updateResult(
+      ScreenHandler handler,
+      World world,
+      PlayerEntity player,
+      RecipeInputInventory input,
+      CraftingResultInventory result) {
+    if (!world.isClient()) {
+      CraftingRecipeInput recipeInput = input.createRecipeInput();
+      ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
+      ItemStack resultItemStack = ItemStack.EMPTY;
+      Optional<RecipeEntry<FletchingRecipe>> optionalRecipe =
+          world
+              .getServer()
+              .getRecipeManager()
+              .getFirstMatch(ModRecipeTypes.FLETCHING, recipeInput, world);
+
+      if (optionalRecipe.isPresent()) {
+        RecipeEntry<FletchingRecipe> recipeEntry = optionalRecipe.get();
+        FletchingRecipe recipe = recipeEntry.value();
+
+        if (result.shouldCraftRecipe(world, serverPlayer, recipeEntry)) {
+          ItemStack itemStack = recipe.craft(recipeInput, world.getRegistryManager());
+
+          if (itemStack.isItemEnabled(world.getEnabledFeatures())) {
+            resultItemStack = itemStack;
+          }
+        }
+      }
+
+      result.setStack(0, resultItemStack);
+      handler.setPreviousTrackedSlot(0, resultItemStack);
+      serverPlayer.networkHandler.sendPacket(
+          new ScreenHandlerSlotUpdateS2CPacket(
+              handler.syncId, handler.nextRevision(), 0, resultItemStack));
+    }
   }
 
   @Override
