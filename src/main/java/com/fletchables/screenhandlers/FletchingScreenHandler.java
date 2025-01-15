@@ -100,6 +100,12 @@ public class FletchingScreenHandler extends ScreenHandler {
     return ScreenHandler.canUse(this.context, player, Blocks.FLETCHING_TABLE);
   }
 
+  @Override
+  public void onClosed(PlayerEntity player) {
+    super.onClosed(player);
+    this.context.run((world, pos) -> this.dropInventory(player, this.input));
+  }
+
   private void addInventorySlots() {
     for (int x = 0; x < 9; x++) {
       this.addSlot(new Slot(this.inventory, x, 8 + x * 18, 142));
