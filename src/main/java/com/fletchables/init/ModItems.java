@@ -3,6 +3,7 @@ package com.fletchables.init;
 import com.fletchables.FletchablesMod;
 import com.fletchables.items.EnderArrowItem;
 import com.fletchables.items.ExplosiveArrowItem;
+import com.fletchables.items.JumpArrowItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -17,13 +18,14 @@ public class ModItems {
   public static final Item ENDER_ARROW =
       register(new EnderArrowItem(new Item.Settings()), "ender_arrow");
 
+  public static final Item JUMP_ARROW =
+      register(new JumpArrowItem(new Item.Settings()), "jump_arrow");
+
   public static void initialize() {
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT)
         .register(
-            content -> {
-              content.addAfter(Items.SPECTRAL_ARROW, EXPLOSIVE_ARROW);
-              content.addAfter(EXPLOSIVE_ARROW, ENDER_ARROW);
-            });
+            content ->
+                content.addAfter(Items.SPECTRAL_ARROW, EXPLOSIVE_ARROW, ENDER_ARROW, JUMP_ARROW));
   }
 
   private static Item register(Item item, String id) {
