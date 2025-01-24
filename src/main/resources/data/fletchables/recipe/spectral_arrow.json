@@ -1,9 +1,5 @@
 {
   "type": "fletchables:fletching",
-  "output": {
-    "count": 4,
-    "id": "minecraft:spectral_arrow"
-  },
   "recipeItems": [
     {
       "item": "minecraft:feather"
@@ -17,5 +13,9 @@
     {
       "item": "minecraft:glowstone"
     }
-  ]
+  ],
+  "output": {
+    "count": 4,
+    "id": "minecraft:spectral_arrow"
+  }
 }

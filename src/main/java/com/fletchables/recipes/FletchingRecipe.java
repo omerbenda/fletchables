@@ -16,12 +16,12 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class FletchingRecipe implements Recipe<CraftingRecipeInput> {
-  private final ItemStack output;
   private final List<Ingredient> recipeItems;
+  private final ItemStack output;
 
-  public FletchingRecipe(ItemStack output, List<Ingredient> recipeItems) {
-    this.output = output;
+  public FletchingRecipe(List<Ingredient> recipeItems, ItemStack output) {
     this.recipeItems = recipeItems;
+    this.output = output;
   }
 
   @Override
@@ -80,11 +80,11 @@ public class FletchingRecipe implements Recipe<CraftingRecipeInput> {
             (instance) ->
                 instance
                     .group(
-                        ItemStack.CODEC.fieldOf("output").forGetter(FletchingRecipe::output),
                         Ingredient.ALLOW_EMPTY_CODEC
                             .listOf()
                             .fieldOf("recipeItems")
-                            .forGetter(FletchingRecipe::recipeItems))
+                            .forGetter(FletchingRecipe::recipeItems),
+                        ItemStack.CODEC.fieldOf("output").forGetter(FletchingRecipe::output))
                     .apply(instance, FletchingRecipe::new));
 
     public static final PacketCodec<RegistryByteBuf, FletchingRecipe> PACKET_CODEC =
@@ -103,21 +103,22 @@ public class FletchingRecipe implements Recipe<CraftingRecipeInput> {
     }
 
     private static FletchingRecipe read(RegistryByteBuf buf) {
-      ItemStack output = ItemStack.PACKET_CODEC.decode(buf);
       int ingredientCount = buf.readVarInt();
       List<Ingredient> recipeItems = DefaultedList.ofSize(ingredientCount, Ingredient.EMPTY);
       recipeItems.replaceAll((ingredient) -> Ingredient.PACKET_CODEC.decode(buf));
+      ItemStack output = ItemStack.PACKET_CODEC.decode(buf);
 
-      return new FletchingRecipe(output, recipeItems);
+      return new FletchingRecipe(recipeItems, output);
     }
 
     private static void write(RegistryByteBuf buf, FletchingRecipe recipe) {
-      ItemStack.PACKET_CODEC.encode(buf, recipe.output());
       buf.writeVarInt(recipe.recipeItems.size());
 
       for (Ingredient ingredient : recipe.recipeItems()) {
         Ingredient.PACKET_CODEC.encode(buf, ingredient);
       }
+
+      ItemStack.PACKET_CODEC.encode(buf, recipe.output());
     }
   }
 }

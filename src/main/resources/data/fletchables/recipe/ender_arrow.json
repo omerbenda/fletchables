@@ -1,9 +1,5 @@
 {
   "type": "fletchables:fletching",
-  "output": {
-    "count": 4,
-    "id": "fletchables:ender_arrow"
-  },
   "recipeItems": [
     {
       "item": "minecraft:feather"
@@ -17,5 +13,9 @@
     {
       "item": "minecraft:ender_pearl"
     }
-  ]
+  ],
+  "output": {
+    "count": 4,
+    "id": "fletchables:ender_arrow"
+  }
 }
