@@ -1,0 +1,18 @@
+{
+  "type": "fletchables:fletching",
+  "recipeItems": [
+    {
+      "item": "minecraft:feather"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:flint"
+    }
+  ],
+  "output": {
+    "count": 4,
+    "id": "minecraft:arrow"
+  }
+}

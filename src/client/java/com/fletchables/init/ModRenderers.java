@@ -15,7 +15,10 @@ public class ModRenderers {
     EntityRendererRegistry.register(
         ModEntityTypes.ENDER_ARROW_ENTITY,
         BaseArrowRenderer.getWithTexture(
-            Identifier.of(
-                FletchablesMod.MOD_ID, "textures/entity/projectiles/ender_arrow.png")));
+            Identifier.of(FletchablesMod.MOD_ID, "textures/entity/projectiles/ender_arrow.png")));
+    EntityRendererRegistry.register(
+        ModEntityTypes.JUMP_ARROW_ENTITY,
+        BaseArrowRenderer.getWithTexture(
+            Identifier.of(FletchablesMod.MOD_ID, "textures/entity/projectiles/jump_arrow.png")));
   }
 }
