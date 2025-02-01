@@ -1,0 +1,21 @@
+{
+  "type": "fletchables:fletching",
+  "recipeItems": [
+    {
+      "item": "minecraft:feather"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:wind_charge"
+    },
+    {
+      "item": "minecraft:tnt"
+    }
+  ],
+  "output": {
+    "count": 4,
+    "id": "fletchables:jump_arrow"
+  }
+}

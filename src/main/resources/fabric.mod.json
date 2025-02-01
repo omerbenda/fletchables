@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "fletchables",
+  "version": "${version}",
+  "name": "Fletchables",
+  "description": "A mod which lets you use the fletching table to create various arrows",
+  "authors": [
+    "omerbenda"
+  ],
+  "license": "CC0-1.0",
+  "icon": "assets/fletchables/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.fletchables.FletchablesMod"
+    ],
+    "client": [
+      "com.fletchables.FletchablesClient"
+    ]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.16.10",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
