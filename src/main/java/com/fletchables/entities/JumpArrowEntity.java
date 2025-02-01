@@ -23,16 +23,19 @@ public class JumpArrowEntity extends PersistentProjectileEntity {
 
   public JumpArrowEntity(EntityType<? extends JumpArrowEntity> entityType, World world) {
     super(entityType, world);
+    setDamage(0);
   }
 
   public JumpArrowEntity(
       double x, double y, double z, World world, ItemStack stack, @Nullable ItemStack weapon) {
     super(ModEntityTypes.JUMP_ARROW_ENTITY, x, y, z, world, stack, weapon);
+    setDamage(0);
   }
 
   public JumpArrowEntity(
       LivingEntity owner, World world, ItemStack stack, @Nullable ItemStack shotFrom) {
     super(ModEntityTypes.JUMP_ARROW_ENTITY, owner, world, stack, shotFrom);
+    setDamage(0);
   }
 
   @Override
