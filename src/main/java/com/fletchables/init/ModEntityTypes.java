@@ -9,6 +9,8 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
 public class ModEntityTypes {
@@ -45,6 +47,9 @@ public class ModEntityTypes {
       EntityType.Builder<T> builder, String id) {
     Identifier identifier = Identifier.of(FletchablesMod.MOD_ID, id);
 
-    return Registry.register(Registries.ENTITY_TYPE, identifier, builder.build(id));
+    return Registry.register(
+        Registries.ENTITY_TYPE,
+        identifier,
+        builder.build(RegistryKey.of(RegistryKeys.ENTITY_TYPE, identifier)));
   }
 }

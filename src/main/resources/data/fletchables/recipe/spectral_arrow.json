@@ -1,18 +1,10 @@
 {
   "type": "fletchables:fletching",
   "recipeItems": [
-    {
-      "item": "minecraft:feather"
-    },
-    {
-      "item": "minecraft:stick"
-    },
-    {
-      "item": "minecraft:flint"
-    },
-    {
-      "item": "minecraft:glowstone"
-    }
+    "minecraft:feather",
+    "minecraft:stick",
+    "minecraft:flint",
+    "minecraft:glowstone"
   ],
   "output": {
     "count": 4,
