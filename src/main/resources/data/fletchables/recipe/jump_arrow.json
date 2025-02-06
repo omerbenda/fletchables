@@ -1,18 +1,10 @@
 {
   "type": "fletchables:fletching",
   "recipeItems": [
-    {
-      "item": "minecraft:feather"
-    },
-    {
-      "item": "minecraft:stick"
-    },
-    {
-      "item": "minecraft:wind_charge"
-    },
-    {
-      "item": "minecraft:tnt"
-    }
+    "minecraft:feather",
+    "minecraft:stick",
+    "minecraft:wind_charge",
+    "minecraft:tnt"
   ],
   "output": {
     "count": 4,

@@ -4,20 +4,26 @@ import com.fletchables.init.ModRecipeSerializers;
 import com.fletchables.init.ModRecipeTypes;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.recipe.*;
+import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 
 public class FletchingRecipe implements Recipe<CraftingRecipeInput> {
   private final List<Ingredient> recipeItems;
   private final ItemStack output;
+  @Nullable private IngredientPlacement ingredientPlacement;
 
   public FletchingRecipe(List<Ingredient> recipeItems, ItemStack output) {
     this.recipeItems = recipeItems;
@@ -43,27 +49,44 @@ public class FletchingRecipe implements Recipe<CraftingRecipeInput> {
 
   @Override
   public ItemStack craft(CraftingRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
-    return this.getResult(lookup).copy();
+    return this.output.copy();
   }
 
   @Override
-  public boolean fits(int width, int height) {
-    return true;
-  }
-
-  @Override
-  public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
-    return this.output;
-  }
-
-  @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends Recipe<CraftingRecipeInput>> getSerializer() {
     return ModRecipeSerializers.FLETCHING_SERIALIZER;
   }
 
   @Override
-  public RecipeType<?> getType() {
+  public RecipeType<? extends Recipe<CraftingRecipeInput>> getType() {
     return ModRecipeTypes.FLETCHING;
+  }
+
+  @Override
+  public IngredientPlacement getIngredientPlacement() {
+    if (this.ingredientPlacement == null) {
+      this.ingredientPlacement =
+          IngredientPlacement.forMultipleSlots(
+              this.recipeItems.stream().map(Optional::ofNullable).toList());
+    }
+
+    return this.ingredientPlacement;
+  }
+
+  @Override
+  public RecipeBookCategory getRecipeBookCategory() {
+    return null;
+  }
+
+  public DefaultedList<ItemStack> getRecipeRemainders(CraftingRecipeInput input) {
+    DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(input.size(), ItemStack.EMPTY);
+
+    for (int i = 0; i < defaultedList.size(); i++) {
+      Item item = input.getStackInSlot(i).getItem();
+      defaultedList.set(i, item.getRecipeRemainder());
+    }
+
+    return defaultedList;
   }
 
   public ItemStack output() {
@@ -80,7 +103,7 @@ public class FletchingRecipe implements Recipe<CraftingRecipeInput> {
             (instance) ->
                 instance
                     .group(
-                        Ingredient.ALLOW_EMPTY_CODEC
+                        Ingredient.CODEC
                             .listOf()
                             .fieldOf("recipeItems")
                             .forGetter(FletchingRecipe::recipeItems),
@@ -104,7 +127,8 @@ public class FletchingRecipe implements Recipe<CraftingRecipeInput> {
 
     private static FletchingRecipe read(RegistryByteBuf buf) {
       int ingredientCount = buf.readVarInt();
-      List<Ingredient> recipeItems = DefaultedList.ofSize(ingredientCount, Ingredient.EMPTY);
+      List<Ingredient> recipeItems =
+          DefaultedList.ofSize(ingredientCount, Ingredient.ofItem(Items.AIR));
       recipeItems.replaceAll((ingredient) -> Ingredient.PACKET_CODEC.decode(buf));
       ItemStack output = ItemStack.PACKET_CODEC.decode(buf);
 

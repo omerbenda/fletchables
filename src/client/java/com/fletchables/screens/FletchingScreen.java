@@ -4,6 +4,7 @@ import com.fletchables.FletchablesMod;
 import com.fletchables.screenhandlers.FletchingScreenHandler;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -26,6 +27,16 @@ public class FletchingScreen extends HandledScreen<FletchingScreenHandler> {
   @Override
   protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
     int yStart = (this.height - this.backgroundHeight) / 2;
-    context.drawTexture(TEXTURE, this.x, yStart, 0, 0, this.backgroundWidth, this.backgroundHeight);
+    context.drawTexture(
+        RenderLayer::getGuiTextured,
+        TEXTURE,
+        this.x,
+        yStart,
+        0,
+        0,
+        this.backgroundWidth,
+        this.backgroundHeight,
+        256,
+        256);
   }
 }

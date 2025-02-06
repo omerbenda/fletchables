@@ -73,7 +73,7 @@ public class FletchingScreenHandler extends ScreenHandler {
         RecipeEntry<FletchingRecipe> recipeEntry = optionalRecipe.get();
         FletchingRecipe recipe = recipeEntry.value();
 
-        if (result.shouldCraftRecipe(world, serverPlayer, recipeEntry)) {
+        if (result.shouldCraftRecipe(serverPlayer, recipeEntry)) {
           ItemStack itemStack = recipe.craft(recipeInput, world.getRegistryManager());
 
           if (itemStack.isItemEnabled(world.getEnabledFeatures())) {

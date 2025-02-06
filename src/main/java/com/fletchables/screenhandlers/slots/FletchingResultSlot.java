@@ -5,9 +5,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.world.World;
 
 public class FletchingResultSlot extends Slot {
   private final RecipeInputInventory input;
@@ -62,10 +65,7 @@ public class FletchingResultSlot extends Slot {
     int left = positioned.left();
     int top = positioned.top();
     DefaultedList<ItemStack> defaultedList =
-        player
-            .getWorld()
-            .getRecipeManager()
-            .getRemainingStacks(ModRecipeTypes.FLETCHING, craftingRecipeInput, player.getWorld());
+        this.getRecipeRemainders(craftingRecipeInput, player.getWorld());
 
     for (int y = 0; y < craftingRecipeInput.getHeight(); y++) {
       for (int x = 0; x < craftingRecipeInput.getWidth(); x++) {
@@ -90,6 +90,28 @@ public class FletchingResultSlot extends Slot {
         }
       }
     }
+  }
+
+  private DefaultedList<ItemStack> getRecipeRemainders(CraftingRecipeInput input, World world) {
+    if (world instanceof ServerWorld serverWorld) {
+      return serverWorld
+          .getRecipeManager()
+          .getFirstMatch(ModRecipeTypes.FLETCHING, input, serverWorld)
+          .map((recipe) -> recipe.value().getRecipeRemainders(input))
+          .orElseGet(() -> copyInput(input));
+    } else {
+      return CraftingRecipe.collectRecipeRemainders(input);
+    }
+  }
+
+  private static DefaultedList<ItemStack> copyInput(CraftingRecipeInput input) {
+    DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(input.size(), ItemStack.EMPTY);
+
+    for (int i = 0; i < defaultedList.size(); ++i) {
+      defaultedList.set(i, input.getStackInSlot(i));
+    }
+
+    return defaultedList;
   }
 
   public boolean disablesDynamicDisplay() {
