@@ -105,11 +105,24 @@ public class FletchingScreenHandler extends ScreenHandler {
         this.context.run(
             (world, pos) ->
                 selectedItemStack.getItem().onCraftByPlayer(selectedItemStack, world, player));
+
         if (!this.insertItem(selectedItemStack, 5, 41, true)) {
           return ItemStack.EMPTY;
         }
 
         slot.onQuickTransfer(selectedItemStack, resultItemStack);
+      } else if (slotIndex >= 5 && slotIndex < 41) {
+        if (!this.insertItem(selectedItemStack, 1, 5, false)) {
+          if (slotIndex < 32) {
+            if (!this.insertItem(selectedItemStack, 32, 41, false)) {
+              return ItemStack.EMPTY;
+            }
+          } else if (!this.insertItem(selectedItemStack, 5, 32, false)) {
+            return ItemStack.EMPTY;
+          }
+        }
+      } else if (!this.insertItem(selectedItemStack, 5, 41, false)) {
+        return ItemStack.EMPTY;
       }
 
       if (selectedItemStack.isEmpty()) {
