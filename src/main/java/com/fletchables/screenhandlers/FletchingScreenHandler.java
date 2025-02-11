@@ -105,7 +105,7 @@ public class FletchingScreenHandler extends ScreenHandler {
         this.context.run(
             (world, pos) ->
                 selectedItemStack.getItem().onCraftByPlayer(selectedItemStack, world, player));
-        if (!this.insertItem(selectedItemStack, 5, 40, true)) {
+        if (!this.insertItem(selectedItemStack, 5, 41, true)) {
           return ItemStack.EMPTY;
         }
 
