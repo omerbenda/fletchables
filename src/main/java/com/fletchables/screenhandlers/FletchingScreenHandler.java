@@ -43,9 +43,9 @@ public class FletchingScreenHandler extends ScreenHandler {
     this.result = new CraftingResultInventory();
     this.player = inventory.player;
 
-    this.addInventorySlots();
-    this.addCraftingSlots();
     this.addSlot(new FletchingResultSlot(inventory.player, this.input, this.result, 0, 147, 35));
+    this.addCraftingSlots();
+    this.addInventorySlots();
   }
 
   @Override
@@ -91,8 +91,45 @@ public class FletchingScreenHandler extends ScreenHandler {
   }
 
   @Override
-  public ItemStack quickMove(PlayerEntity player, int slot) {
-    return ItemStack.EMPTY;
+  public ItemStack quickMove(PlayerEntity player, int slotIndex) {
+    ItemStack resultItemStack = ItemStack.EMPTY;
+    Slot slot = this.slots.get(slotIndex);
+
+    System.out.println(slotIndex);
+
+    if (slot.hasStack()) {
+      ItemStack selectedItemStack = slot.getStack();
+      resultItemStack = selectedItemStack.copy();
+
+      if (slotIndex == 0) {
+        this.context.run(
+            (world, pos) ->
+                selectedItemStack.getItem().onCraftByPlayer(selectedItemStack, world, player));
+        if (!this.insertItem(selectedItemStack, 5, 40, true)) {
+          return ItemStack.EMPTY;
+        }
+
+        slot.onQuickTransfer(selectedItemStack, resultItemStack);
+      }
+
+      if (selectedItemStack.isEmpty()) {
+        slot.setStack(ItemStack.EMPTY);
+      } else {
+        slot.markDirty();
+      }
+
+      if (selectedItemStack.getCount() == resultItemStack.getCount()) {
+        return ItemStack.EMPTY;
+      }
+
+      slot.onTakeItem(player, selectedItemStack);
+
+      if (slotIndex == 0) {
+        player.dropItem(selectedItemStack, false);
+      }
+    }
+
+    return resultItemStack;
   }
 
   @Override
