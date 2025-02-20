@@ -1,0 +1,13 @@
+{
+  "type": "fletchables:fletching",
+  "recipeItems": [
+    "minecraft:feather",
+    "minecraft:stick",
+    "minecraft:flint",
+    "minecraft:twisting_vines"
+  ],
+  "output": {
+    "count": 4,
+    "id": "fletchables:twisting_arrow"
+  }
+}

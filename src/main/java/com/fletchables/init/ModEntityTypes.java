@@ -4,6 +4,7 @@ import com.fletchables.FletchablesMod;
 import com.fletchables.entities.EnderArrowEntity;
 import com.fletchables.entities.ExplosiveArrowEntity;
 import com.fletchables.entities.JumpArrowEntity;
+import com.fletchables.entities.TwistingArrowEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -31,7 +32,6 @@ public class ModEntityTypes {
               .maxTrackingRange(4)
               .trackingTickInterval(20),
           "ender_arrow");
-
   public static final EntityType<JumpArrowEntity> JUMP_ARROW_ENTITY =
       register(
           EntityType.Builder.<JumpArrowEntity>create(JumpArrowEntity::new, SpawnGroup.MISC)
@@ -40,6 +40,14 @@ public class ModEntityTypes {
               .maxTrackingRange(4)
               .trackingTickInterval(20),
           "jump_arrow");
+  public static final EntityType<TwistingArrowEntity> TWISTING_ARROW_ENTITY =
+      register(
+          EntityType.Builder.<TwistingArrowEntity>create(TwistingArrowEntity::new, SpawnGroup.MISC)
+              .dimensions(0.5F, 0.5F)
+              .eyeHeight(0.13F)
+              .maxTrackingRange(4)
+              .trackingTickInterval(20),
+          "twisting_arrow");
 
   public static void initialize() {}
 
