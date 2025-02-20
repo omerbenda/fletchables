@@ -30,7 +30,7 @@ public class TwistingArrowEntity extends PersistentProjectileEntity {
 
   @Override
   protected ItemStack getDefaultItemStack() {
-    return new ItemStack(ModItems.JUMP_ARROW);
+    return new ItemStack(ModItems.TWISTING_ARROW);
   }
 
   @Override
