@@ -4,6 +4,7 @@ import com.fletchables.FletchablesMod;
 import com.fletchables.items.EnderArrowItem;
 import com.fletchables.items.ExplosiveArrowItem;
 import com.fletchables.items.JumpArrowItem;
+import com.fletchables.items.TwistingArrowItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.item.Item;
@@ -24,16 +25,24 @@ public class ModItems {
       register(EnderArrowItem::new, new Item.Settings(), "ender_arrow");
   public static final Item JUMP_ARROW =
       register(JumpArrowItem::new, new Item.Settings(), "jump_arrow");
+  public static final Item TWISTING_ARROW =
+      register(TwistingArrowItem::new, new Item.Settings(), "twisting_arrow");
 
   public static void initialize() {
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT)
         .register(
             content ->
-                content.addAfter(Items.SPECTRAL_ARROW, EXPLOSIVE_ARROW, ENDER_ARROW, JUMP_ARROW));
+                content.addAfter(
+                    Items.SPECTRAL_ARROW,
+                    EXPLOSIVE_ARROW,
+                    ENDER_ARROW,
+                    JUMP_ARROW,
+                    TWISTING_ARROW));
 
     DispenserBlock.registerProjectileBehavior(EXPLOSIVE_ARROW);
     DispenserBlock.registerProjectileBehavior(ENDER_ARROW);
     DispenserBlock.registerProjectileBehavior(JUMP_ARROW);
+    DispenserBlock.registerProjectileBehavior(TWISTING_ARROW);
   }
 
   private static Item register(
