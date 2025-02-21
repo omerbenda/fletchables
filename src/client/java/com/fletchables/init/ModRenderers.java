@@ -25,5 +25,9 @@ public class ModRenderers {
         BaseArrowRenderer.getWithTexture(
             Identifier.of(
                 FletchablesMod.MOD_ID, "textures/entity/projectiles/twisting_arrow.png")));
+    EntityRendererRegistry.register(
+        ModEntityTypes.CHORUS_ARROW_ENTITY,
+        BaseArrowRenderer.getWithTexture(
+            Identifier.of(FletchablesMod.MOD_ID, "textures/entity/projectiles/chorus_arrow.png")));
   }
 }
