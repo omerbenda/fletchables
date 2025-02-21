@@ -1,0 +1,13 @@
+{
+  "type": "fletchables:fletching",
+  "recipeItems": [
+    "minecraft:feather",
+    "minecraft:stick",
+    "minecraft:flint",
+    "minecraft:chorus_fruit"
+  ],
+  "output": {
+    "count": 4,
+    "id": "fletchables:chorus_arrow"
+  }
+}
