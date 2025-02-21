@@ -43,7 +43,8 @@ public class ChorusArrowEntity extends PersistentProjectileEntity {
   protected void onEntityHit(EntityHitResult entityHitResult) {
     super.onEntityHit(entityHitResult);
 
-    if (entityHitResult.getEntity() instanceof LivingEntity livingEntityHit) {
+    if (entityHitResult.getEntity() instanceof LivingEntity livingEntityHit
+        && !livingEntityHit.getEntityWorld().isClient()) {
       teleport(livingEntityHit, 16);
     }
   }
@@ -52,7 +53,7 @@ public class ChorusArrowEntity extends PersistentProjectileEntity {
     World world = target.getEntityWorld();
     boolean bl = false;
 
-    for (int i = 0; i < 16; ++i) {
+    for (int i = 0; i < 16; i++) {
       double d = target.getX() + (target.getRandom().nextDouble() - 0.5) * diameter;
       double e =
           MathHelper.clamp(
@@ -60,13 +61,15 @@ public class ChorusArrowEntity extends PersistentProjectileEntity {
               world.getBottomY(),
               world.getBottomY() + ((ServerWorld) world).getLogicalHeight() - 1);
       double f = target.getZ() + (target.getRandom().nextDouble() - 0.5) * diameter;
+
       if (target.hasVehicle()) {
         target.stopRiding();
       }
 
-      Vec3d vec3d = target.getPos();
+      Vec3d pos = target.getPos();
+
       if (target.teleport(d, e, f, true)) {
-        world.emitGameEvent(GameEvent.TELEPORT, vec3d, GameEvent.Emitter.of(target));
+        world.emitGameEvent(GameEvent.TELEPORT, pos, GameEvent.Emitter.of(target));
         SoundCategory soundCategory;
         SoundEvent soundEvent;
         if (target instanceof FoxEntity) {
