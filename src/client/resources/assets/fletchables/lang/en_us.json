@@ -4,5 +4,7 @@
   "item.fletchables.jump_arrow": "Jump Arrow",
   "item.fletchables.twisting_arrow": "Twisting Arrow",
   "item.fletchables.chorus_arrow": "Chorus Arrow",
-  "item.fletchables.jump_tnt": "Jump TNT"
+  "item.fletchables.jump_tnt": "Jump TNT",
+  "advancements.adventure.has_jump_arrow.title": "Better Than Stairs",
+  "advancements.adventure.has_jump_arrow.description": "Craft a jump arrow at the fletching table"
 }

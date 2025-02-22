@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:adventure/shoot_arrow",
+  "criteria": {
+    "has_jump_arrow": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fletchables:jump_arrow"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.adventure.has_jump_arrow.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "fletchables:jump_arrow"
+    },
+    "title": {
+      "translate": "advancements.adventure.has_jump_arrow.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_jump_arrow"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
