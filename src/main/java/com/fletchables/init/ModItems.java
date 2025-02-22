@@ -3,7 +3,6 @@ package com.fletchables.init;
 import com.fletchables.FletchablesMod;
 import com.fletchables.items.*;
 import java.util.function.Function;
-import net.minecraft.block.DispenserBlock;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -23,13 +22,7 @@ public class ModItems {
   public static final Item CHORUS_ARROW =
       register(ChorusArrowItem::new, new Item.Settings(), "chorus_arrow");
 
-  public static void initialize() {
-    DispenserBlock.registerProjectileBehavior(EXPLOSIVE_ARROW);
-    DispenserBlock.registerProjectileBehavior(ENDER_ARROW);
-    DispenserBlock.registerProjectileBehavior(JUMP_ARROW);
-    DispenserBlock.registerProjectileBehavior(TWISTING_ARROW);
-    DispenserBlock.registerProjectileBehavior(CHORUS_ARROW);
-  }
+  public static void initialize() {}
 
   private static Item register(
       Function<Item.Settings, Item> itemFunction, Item.Settings settings, String id) {
