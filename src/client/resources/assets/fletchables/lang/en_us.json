@@ -1,5 +1,8 @@
 {
   "item.fletchables.explosive_arrow": "Explosive Arrow",
   "item.fletchables.ender_arrow": "Ender Arrow",
-  "item.fletchables.jump_arrow": "Jump Arrow"
+  "item.fletchables.jump_arrow": "Jump Arrow",
+  "item.fletchables.twisting_arrow": "Twisting Arrow",
+  "item.fletchables.chorus_arrow": "Chorus Arrow",
+  "item.fletchables.jump_tnt": "Jump TNT"
 }

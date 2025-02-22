@@ -3,6 +3,8 @@
   "values": [
     "fletchables:explosive_arrow",
     "fletchables:ender_arrow",
-    "fletchables:jump_arrow"
+    "fletchables:jump_arrow",
+    "fletchables:twisting_arrow",
+    "fletchables:chorus_arrow"
   ]
 }

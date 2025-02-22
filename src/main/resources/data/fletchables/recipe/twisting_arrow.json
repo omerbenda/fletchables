@@ -4,10 +4,10 @@
     "minecraft:feather",
     "minecraft:stick",
     "minecraft:flint",
-    "fletchables:jump_tnt"
+    "minecraft:twisting_vines"
   ],
   "output": {
     "count": 4,
-    "id": "fletchables:jump_arrow"
+    "id": "fletchables:twisting_arrow"
   }
 }
