@@ -3,8 +3,8 @@
   "recipeItems": [
     "minecraft:feather",
     "minecraft:stick",
-    "minecraft:wind_charge",
-    "minecraft:tnt"
+    "minecraft:flint",
+    "fletchables:jump_tnt"
   ],
   "output": {
     "count": 4,

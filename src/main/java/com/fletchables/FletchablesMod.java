@@ -9,6 +9,8 @@ public class FletchablesMod implements ModInitializer {
   @Override
   public void onInitialize() {
     ModItems.initialize();
+    ModBlocks.initialize();
+    ModItemGroups.initialize();
     ModEntityTypes.initialize();
     ModRecipeSerializers.initialize();
     ModRecipeTypes.initialize();

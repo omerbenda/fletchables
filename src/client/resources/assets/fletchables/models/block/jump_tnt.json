@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "fletchables:block/jump_tnt_bottom",
+    "side": "fletchables:block/jump_tnt_side",
+    "top": "fletchables:block/jump_tnt_top"
+  }
+}
