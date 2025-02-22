@@ -17,7 +17,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
 public class ModBlocks {
-  public static Block JUMP_TNT_BLOCK =
+  public static final Block JUMP_TNT_BLOCK =
       register(
           JumpTntBlock::new,
           AbstractBlock.Settings.create()
