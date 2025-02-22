@@ -2,18 +2,14 @@ package com.fletchables.init;
 
 import com.fletchables.FletchablesMod;
 import com.fletchables.items.*;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import java.util.function.Function;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
-import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
-
-import java.util.function.Function;
 
 public class ModItems {
   public static final Item EXPLOSIVE_ARROW =
@@ -28,17 +24,6 @@ public class ModItems {
       register(ChorusArrowItem::new, new Item.Settings(), "chorus_arrow");
 
   public static void initialize() {
-    ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT)
-        .register(
-            content ->
-                content.addAfter(
-                    Items.SPECTRAL_ARROW,
-                    EXPLOSIVE_ARROW,
-                    ENDER_ARROW,
-                    JUMP_ARROW,
-                    TWISTING_ARROW,
-                    CHORUS_ARROW));
-
     DispenserBlock.registerProjectileBehavior(EXPLOSIVE_ARROW);
     DispenserBlock.registerProjectileBehavior(ENDER_ARROW);
     DispenserBlock.registerProjectileBehavior(JUMP_ARROW);
