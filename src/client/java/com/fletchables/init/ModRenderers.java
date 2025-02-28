@@ -30,6 +30,10 @@ public class ModRenderers {
         ModEntityTypes.CHORUS_ARROW_ENTITY,
         BaseArrowRenderer.getWithTexture(
             Identifier.of(FletchablesMod.MOD_ID, "textures/entity/projectiles/chorus_arrow.png")));
+    EntityRendererRegistry.register(
+        ModEntityTypes.LAVA_ARROW_ENTITY,
+        BaseArrowRenderer.getWithTexture(
+            Identifier.of(FletchablesMod.MOD_ID, "textures/entity/projectiles/lava_arrow.png")));
     EntityRendererRegistry.register(ModEntityTypes.JUMP_TNT_ENTITY, JumpTntRenderer::new);
   }
 }

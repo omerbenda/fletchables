@@ -28,7 +28,8 @@ public class ModItemGroups {
                     ModItems.ENDER_ARROW,
                     ModItems.JUMP_ARROW,
                     ModItems.TWISTING_ARROW,
-                    ModItems.CHORUS_ARROW));
+                    ModItems.CHORUS_ARROW,
+                    ModItems.LAVA_ARROW));
 
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE)
         .register(content -> content.addAfter(Blocks.TNT, ModBlocks.JUMP_TNT_BLOCK));
@@ -38,6 +39,7 @@ public class ModItemGroups {
     DispenserBlock.registerProjectileBehavior(ModItems.JUMP_ARROW);
     DispenserBlock.registerProjectileBehavior(ModItems.TWISTING_ARROW);
     DispenserBlock.registerProjectileBehavior(ModItems.CHORUS_ARROW);
+    DispenserBlock.registerProjectileBehavior(ModItems.LAVA_ARROW);
     DispenserBlock.registerBehavior(
         ModBlocks.JUMP_TNT_BLOCK,
         new ItemDispenserBehavior() {
