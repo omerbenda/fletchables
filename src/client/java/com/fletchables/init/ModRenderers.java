@@ -32,6 +32,13 @@ public class ModRenderers {
         BaseArrowRenderer.getWithTexture(
             Identifier.of(FletchablesMod.MOD_ID, "textures/entity/projectiles/chorus_arrow.png")));
     EntityRendererRegistry.register(
+        ModEntityTypes.WATER_ARROW_ENTITY,
+        (context) ->
+            new BucketArrowRenderer<>(
+                context,
+                Identifier.of(
+                    FletchablesMod.MOD_ID, "textures/entity/projectiles/water_arrow.png")));
+    EntityRendererRegistry.register(
         ModEntityTypes.LAVA_ARROW_ENTITY,
         (context) ->
             new BucketArrowRenderer<>(

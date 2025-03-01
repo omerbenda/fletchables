@@ -14,24 +14,24 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class LavaArrowEntity extends PersistentProjectileEntity {
-  public LavaArrowEntity(EntityType<? extends LavaArrowEntity> entityType, World world) {
+public class WaterArrowEntity extends PersistentProjectileEntity {
+  public WaterArrowEntity(EntityType<? extends WaterArrowEntity> entityType, World world) {
     super(entityType, world);
   }
 
-  public LavaArrowEntity(
+  public WaterArrowEntity(
       double x, double y, double z, World world, ItemStack stack, @Nullable ItemStack weapon) {
-    super(ModEntityTypes.LAVA_ARROW_ENTITY, x, y, z, world, stack, weapon);
+    super(ModEntityTypes.WATER_ARROW_ENTITY, x, y, z, world, stack, weapon);
   }
 
-  public LavaArrowEntity(
+  public WaterArrowEntity(
       LivingEntity owner, World world, ItemStack stack, @Nullable ItemStack shotFrom) {
-    super(ModEntityTypes.LAVA_ARROW_ENTITY, owner, world, stack, shotFrom);
+    super(ModEntityTypes.WATER_ARROW_ENTITY, owner, world, stack, shotFrom);
   }
 
   @Override
   protected ItemStack getDefaultItemStack() {
-    return new ItemStack(ModItems.LAVA_ARROW);
+    return new ItemStack(ModItems.WATER_ARROW);
   }
 
   @Override
@@ -50,7 +50,7 @@ public class LavaArrowEntity extends PersistentProjectileEntity {
 
   private void setBlockAtPos(BlockPos pos) {
     World world = this.getEntityWorld();
-    world.setBlockState(pos, Blocks.LAVA.getDefaultState());
+    world.setBlockState(pos, Blocks.WATER.getDefaultState());
     world.spawnEntity(new ArrowEntity(EntityType.ARROW, world));
     this.remove(RemovalReason.DISCARDED);
   }
