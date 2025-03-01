@@ -21,6 +21,10 @@ public class ModItems {
       register(TwistingArrowItem::new, new Item.Settings(), "twisting_arrow");
   public static final Item CHORUS_ARROW =
       register(ChorusArrowItem::new, new Item.Settings(), "chorus_arrow");
+  public static final Item WATER_ARROW =
+      register(WaterArrowItem::new, new Item.Settings(), "water_arrow");
+  public static final Item LAVA_ARROW =
+      register(LavaArrowItem::new, new Item.Settings(), "lava_arrow");
 
   public static void initialize() {}
 

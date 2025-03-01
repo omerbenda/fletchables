@@ -1,0 +1,12 @@
+{
+  "type": "fletchables:fletching",
+  "recipeItems": [
+    "minecraft:feather",
+    "minecraft:iron_ingot",
+    "minecraft:water_bucket"
+  ],
+  "output": {
+    "count": 1,
+    "id": "fletchables:water_arrow"
+  }
+}

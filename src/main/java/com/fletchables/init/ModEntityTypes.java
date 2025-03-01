@@ -53,6 +53,22 @@ public class ModEntityTypes {
               .maxTrackingRange(4)
               .trackingTickInterval(20),
           "chorus_arrow");
+  public static final EntityType<WaterArrowEntity> WATER_ARROW_ENTITY =
+      register(
+          EntityType.Builder.<WaterArrowEntity>create(WaterArrowEntity::new, SpawnGroup.MISC)
+              .dimensions(0.5F, 0.5F)
+              .eyeHeight(0.13F)
+              .maxTrackingRange(4)
+              .trackingTickInterval(20),
+          "water_arrow");
+  public static final EntityType<LavaArrowEntity> LAVA_ARROW_ENTITY =
+      register(
+          EntityType.Builder.<LavaArrowEntity>create(LavaArrowEntity::new, SpawnGroup.MISC)
+              .dimensions(0.5F, 0.5F)
+              .eyeHeight(0.13F)
+              .maxTrackingRange(4)
+              .trackingTickInterval(20),
+          "lava_arrow");
   public static final EntityType<JumpTntEntity> JUMP_TNT_ENTITY =
       register(
           EntityType.Builder.<JumpTntEntity>create(JumpTntEntity::new, SpawnGroup.MISC)

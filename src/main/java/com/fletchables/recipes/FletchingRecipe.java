@@ -4,7 +4,6 @@ import com.fletchables.init.ModRecipeSerializers;
 import com.fletchables.init.ModRecipeTypes;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.RegistryByteBuf;
@@ -79,14 +78,7 @@ public class FletchingRecipe implements Recipe<CraftingRecipeInput> {
   }
 
   public DefaultedList<ItemStack> getRecipeRemainders(CraftingRecipeInput input) {
-    DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(input.size(), ItemStack.EMPTY);
-
-    for (int i = 0; i < defaultedList.size(); i++) {
-      Item item = input.getStackInSlot(i).getItem();
-      defaultedList.set(i, item.getRecipeRemainder());
-    }
-
-    return defaultedList;
+    return DefaultedList.ofSize(input.size(), ItemStack.EMPTY);
   }
 
   public ItemStack output() {
