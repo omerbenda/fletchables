@@ -8,7 +8,9 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -33,15 +35,22 @@ public class LavaArrowEntity extends PersistentProjectileEntity {
   }
 
   @Override
-  protected void onCollision(HitResult hitResult) {
-    super.onCollision(hitResult);
+  protected void onBlockHit(BlockHitResult blockHitResult) {
+    super.onBlockHit(blockHitResult);
 
-    this.setBlockAtPos();
+    this.setBlockAtPos(this.getBlockPos());
   }
 
-  private void setBlockAtPos() {
+  @Override
+  protected void onEntityHit(EntityHitResult entityHitResult) {
+    super.onEntityHit(entityHitResult);
+
+    this.setBlockAtPos(entityHitResult.getEntity().getBlockPos());
+  }
+
+  private void setBlockAtPos(BlockPos pos) {
     World world = this.getEntityWorld();
-    world.setBlockState(this.getBlockPos(), Blocks.LAVA.getDefaultState());
+    world.setBlockState(pos, Blocks.LAVA.getDefaultState());
     world.spawnEntity(new ArrowEntity(EntityType.ARROW, world));
     this.remove(RemovalReason.DISCARDED);
   }
