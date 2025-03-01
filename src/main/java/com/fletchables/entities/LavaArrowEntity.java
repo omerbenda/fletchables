@@ -5,11 +5,10 @@ import com.fletchables.init.ModItems;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -37,9 +36,13 @@ public class LavaArrowEntity extends PersistentProjectileEntity {
   protected void onCollision(HitResult hitResult) {
     super.onCollision(hitResult);
 
-    Vec3d hitPos = hitResult.getPos();
-    BlockPos hitBlockPos = new BlockPos((int)hitPos.x, (int)hitPos.y, (int)hitPos.z);
-    this.getEntityWorld().setBlockState(hitBlockPos, Blocks.LAVA.getDefaultState());
+    this.setBlockAtPos();
+  }
+
+  private void setBlockAtPos() {
+    World world = this.getEntityWorld();
+    world.setBlockState(this.getBlockPos(), Blocks.LAVA.getDefaultState());
+    world.spawnEntity(new ArrowEntity(EntityType.ARROW, world));
     this.remove(RemovalReason.DISCARDED);
   }
 }
