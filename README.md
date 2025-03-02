@@ -3,12 +3,13 @@ A Minecraft mod which lets you use the fletching table to create various arrows
 
 ![View Recipes](https://github.com/omerbenda/fletchables/wiki/Recipes)
 
-## Fletchables brings 5 new arrows to the game:
+## Fletchables brings 7 new arrows to the game:
 - The Explosive Arrow, capable of delivering a blast to your target
 - The Ender Arrow, used for teleportation
 - The Jump Arrow, which allows you to "rocket jump"
 - The Twisting Arrow, turns your target's head around
 - The Chorus Arrow, teleport your target to a random position close by
+- The Water and Lava Arrows, places water or lava where it hits
 
 ## New block:
 - The Jump TNT can launch you into the air without leaving any mark
