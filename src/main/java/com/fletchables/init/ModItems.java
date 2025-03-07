@@ -25,6 +25,8 @@ public class ModItems {
       register(WaterArrowItem::new, new Item.Settings(), "water_arrow");
   public static final Item LAVA_ARROW =
       register(LavaArrowItem::new, new Item.Settings(), "lava_arrow");
+  public static final Item WEB_ARROW =
+      register(WebArrowItem::new, new Item.Settings(), "web_arrow");
 
   public static void initialize() {}
 
