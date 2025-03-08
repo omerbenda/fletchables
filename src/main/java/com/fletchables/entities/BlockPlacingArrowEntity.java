@@ -1,7 +1,6 @@
 package com.fletchables.entities;
 
-import com.fletchables.init.ModEntityTypes;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
@@ -13,23 +12,41 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class WebArrowEntity extends PersistentProjectileEntity {
+public class BlockPlacingArrowEntity extends PersistentProjectileEntity {
   private static final String SHOULD_PLACE_NBT = "shouldPlace";
+
+  private final Block blockToPlace;
 
   private boolean shouldPlace = true;
 
-  public WebArrowEntity(EntityType<? extends WebArrowEntity> entityType, World world) {
+  public BlockPlacingArrowEntity(
+      EntityType<? extends BlockPlacingArrowEntity> entityType, World world, Block blockToPlace) {
     super(entityType, world);
+    this.blockToPlace = blockToPlace;
   }
 
-  public WebArrowEntity(
-      double x, double y, double z, World world, ItemStack stack, @Nullable ItemStack weapon) {
-    super(ModEntityTypes.WEB_ARROW_ENTITY, x, y, z, world, stack, weapon);
+  public BlockPlacingArrowEntity(
+      EntityType<? extends BlockPlacingArrowEntity> entityType,
+      double x,
+      double y,
+      double z,
+      World world,
+      ItemStack stack,
+      @Nullable ItemStack weapon,
+      Block blockToPlace) {
+    super(entityType, x, y, z, world, stack, weapon);
+    this.blockToPlace = blockToPlace;
   }
 
-  public WebArrowEntity(
-      LivingEntity owner, World world, ItemStack stack, @Nullable ItemStack shotFrom) {
-    super(ModEntityTypes.WEB_ARROW_ENTITY, owner, world, stack, shotFrom);
+  public BlockPlacingArrowEntity(
+      EntityType<? extends BlockPlacingArrowEntity> entityType,
+      LivingEntity owner,
+      World world,
+      ItemStack stack,
+      @Nullable ItemStack shotFrom,
+      Block blockToPlace) {
+    super(entityType, owner, world, stack, shotFrom);
+    this.blockToPlace = blockToPlace;
   }
 
   @Override
@@ -53,7 +70,7 @@ public class WebArrowEntity extends PersistentProjectileEntity {
   }
 
   private void setBlockAtPos(BlockPos pos) {
-    this.getEntityWorld().setBlockState(pos, Blocks.COBWEB.getDefaultState());
+    this.getEntityWorld().setBlockState(pos, this.blockToPlace.getDefaultState());
   }
 
   @Override
