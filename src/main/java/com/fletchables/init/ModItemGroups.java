@@ -30,7 +30,8 @@ public class ModItemGroups {
                     ModItems.TWISTING_ARROW,
                     ModItems.CHORUS_ARROW,
                     ModItems.WATER_ARROW,
-                    ModItems.LAVA_ARROW));
+                    ModItems.LAVA_ARROW,
+                    ModItems.WEB_ARROW));
 
     ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE)
         .register(content -> content.addAfter(Blocks.TNT, ModBlocks.JUMP_TNT_BLOCK));
@@ -42,6 +43,7 @@ public class ModItemGroups {
     DispenserBlock.registerProjectileBehavior(ModItems.CHORUS_ARROW);
     DispenserBlock.registerProjectileBehavior(ModItems.WATER_ARROW);
     DispenserBlock.registerProjectileBehavior(ModItems.LAVA_ARROW);
+    DispenserBlock.registerProjectileBehavior(ModItems.WEB_ARROW);
     DispenserBlock.registerBehavior(
         ModBlocks.JUMP_TNT_BLOCK,
         new ItemDispenserBehavior() {
