@@ -87,6 +87,14 @@ public class ModEntityTypes {
               .maxTrackingRange(4)
               .trackingTickInterval(20),
           "web_arrow");
+  public static final EntityType<SubArrowEntity> SUB_ARROW_ENTITY =
+      register(
+          EntityType.Builder.<SubArrowEntity>create(SubArrowEntity::new, SpawnGroup.MISC)
+              .dimensions(0.5F, 0.5F)
+              .eyeHeight(0.13F)
+              .maxTrackingRange(4)
+              .trackingTickInterval(20),
+          "sub_arrow");
   public static final EntityType<JumpTntEntity> JUMP_TNT_ENTITY =
       register(
           EntityType.Builder.<JumpTntEntity>create(JumpTntEntity::new, SpawnGroup.MISC)

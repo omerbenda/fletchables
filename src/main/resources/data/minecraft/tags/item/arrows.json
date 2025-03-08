@@ -8,6 +8,7 @@
     "fletchables:chorus_arrow",
     "fletchables:water_arrow",
     "fletchables:lava_arrow",
-    "fletchables:web_arrow"
+    "fletchables:web_arrow",
+    "fletchables:sub_arrow"
   ]
 }
