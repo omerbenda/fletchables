@@ -1,0 +1,13 @@
+{
+  "type": "fletchables:fletching",
+  "recipeItems": [
+    "minecraft:iron_ingot",
+    "minecraft:emerald",
+    "minecraft:flint",
+    "minecraft:redstone"
+  ],
+  "output": {
+    "count": 4,
+    "id": "fletchables:sub_arrow"
+  }
+}
