@@ -41,6 +41,8 @@ public class ModItems {
               new BlockPlacingArrowItem(settings, ModEntityTypes.WEB_ARROW_ENTITY, Blocks.COBWEB),
           new Item.Settings(),
           "web_arrow");
+  public static final Item SUB_ARROW =
+      register(SubArrowItem::new, new Item.Settings(), "sub_arrow");
 
   public static void initialize() {}
 

@@ -52,6 +52,10 @@ public class ModRenderers {
             new WebArrowRenderer<>(
                 context,
                 Identifier.of(FletchablesMod.MOD_ID, "textures/entity/projectiles/web_arrow.png")));
+    EntityRendererRegistry.register(
+        ModEntityTypes.SUB_ARROW_ENTITY,
+        BaseArrowRenderer.getWithTexture(
+            Identifier.of(FletchablesMod.MOD_ID, "textures/entity/projectiles/sub_arrow.png")));
     EntityRendererRegistry.register(ModEntityTypes.JUMP_TNT_ENTITY, JumpTntRenderer::new);
   }
 }
