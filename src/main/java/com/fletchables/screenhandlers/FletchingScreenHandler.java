@@ -95,8 +95,6 @@ public class FletchingScreenHandler extends ScreenHandler {
     ItemStack resultItemStack = ItemStack.EMPTY;
     Slot slot = this.slots.get(slotIndex);
 
-    System.out.println(slotIndex);
-
     if (slot.hasStack()) {
       ItemStack selectedItemStack = slot.getStack();
       resultItemStack = selectedItemStack.copy();
