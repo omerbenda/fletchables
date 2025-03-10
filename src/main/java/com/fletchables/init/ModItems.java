@@ -3,6 +3,8 @@ package com.fletchables.init;
 import com.fletchables.FletchablesMod;
 import com.fletchables.items.*;
 import java.util.function.Function;
+
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -22,9 +24,25 @@ public class ModItems {
   public static final Item CHORUS_ARROW =
       register(ChorusArrowItem::new, new Item.Settings(), "chorus_arrow");
   public static final Item WATER_ARROW =
-      register(WaterArrowItem::new, new Item.Settings(), "water_arrow");
+      register(
+          (settings) ->
+              new BlockPlacingArrowItem(settings, ModEntityTypes.WATER_ARROW_ENTITY, Blocks.WATER),
+          new Item.Settings(),
+          "water_arrow");
   public static final Item LAVA_ARROW =
-      register(LavaArrowItem::new, new Item.Settings(), "lava_arrow");
+      register(
+          (settings) ->
+              new BlockPlacingArrowItem(settings, ModEntityTypes.LAVA_ARROW_ENTITY, Blocks.LAVA),
+          new Item.Settings(),
+          "lava_arrow");
+  public static final Item WEB_ARROW =
+      register(
+          (settings) ->
+              new BlockPlacingArrowItem(settings, ModEntityTypes.WEB_ARROW_ENTITY, Blocks.COBWEB),
+          new Item.Settings(),
+          "web_arrow");
+  public static final Item SUB_ARROW =
+      register(SubArrowItem::new, new Item.Settings(), "sub_arrow");
 
   public static void initialize() {}
 

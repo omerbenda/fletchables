@@ -6,6 +6,8 @@
   "item.fletchables.chorus_arrow": "Chorus Arrow",
   "item.fletchables.water_arrow": "Water Arrow",
   "item.fletchables.lava_arrow": "Lava Arrow",
+  "item.fletchables.web_arrow": "Web Arrow",
+  "item.fletchables.sub_arrow": "Sub Arrow",
   "item.fletchables.jump_tnt": "Jump TNT",
   "advancements.adventure.has_jump_arrow.title": "Better Than Stairs",
   "advancements.adventure.has_jump_arrow.description": "Craft a jump arrow at the fletching table"
