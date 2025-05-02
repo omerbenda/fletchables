@@ -83,7 +83,6 @@ public class FletchingScreenHandler extends ScreenHandler {
       }
 
       result.setStack(0, resultItemStack);
-      handler.setPreviousTrackedSlot(0, resultItemStack);
       serverPlayer.networkHandler.sendPacket(
           new ScreenHandlerSlotUpdateS2CPacket(
               handler.syncId, handler.nextRevision(), 0, resultItemStack));
@@ -95,16 +94,13 @@ public class FletchingScreenHandler extends ScreenHandler {
     ItemStack resultItemStack = ItemStack.EMPTY;
     Slot slot = this.slots.get(slotIndex);
 
-    System.out.println(slotIndex);
-
     if (slot.hasStack()) {
       ItemStack selectedItemStack = slot.getStack();
       resultItemStack = selectedItemStack.copy();
 
       if (slotIndex == 0) {
         this.context.run(
-            (world, pos) ->
-                selectedItemStack.getItem().onCraftByPlayer(selectedItemStack, world, player));
+            (world, pos) -> selectedItemStack.getItem().onCraftByPlayer(selectedItemStack, player));
 
         if (!this.insertItem(selectedItemStack, 5, 41, true)) {
           return ItemStack.EMPTY;
