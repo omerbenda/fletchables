@@ -77,7 +77,7 @@ public class BlockPlacingArrowEntity extends PersistentProjectileEntity {
   public void readNbt(NbtCompound nbt) {
     super.readNbt(nbt);
 
-    this.shouldPlace = nbt.getBoolean(SHOULD_PLACE_NBT);
+    this.shouldPlace = nbt.getBoolean(SHOULD_PLACE_NBT, false);
   }
 
   @Override

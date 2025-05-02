@@ -30,12 +30,14 @@ public class BucketArrowModel extends EntityModel<ProjectileEntityRenderState> {
         "cross_2", modelPartBuilder, ModelTransform.rotation(2.3561945F, 0.0F, 0.0F));
 
     modelPartData.addChild(
-            "front",
-            ModelPartBuilder.create().uv(0, 10).cuboid(15.0F, -2.5F, -2.5F, 5.0F, 5.0F, 5.0F),
-            ModelTransform.of(-11.0F, 0.0F, 0.0F, 0.7853982F, 0.0F, 0.0F).withScale(0.8F));
+        "front",
+        ModelPartBuilder.create().uv(0, 10).cuboid(15.0F, -2.5F, -2.5F, 5.0F, 5.0F, 5.0F),
+        ModelTransform.of(-11.0F, 0.0F, 0.0F, 0.7853982F, 0.0F, 0.0F).withScale(0.8F));
 
     return TexturedModelData.of(
-        modelData.transform((modelTransform) -> modelTransform.scaled(0.9F)), 32, 32);
+        modelData.transform((ModelTransform modelTransform) -> modelTransform.scaled(0.9F)),
+        32,
+        32);
   }
 
   @Override

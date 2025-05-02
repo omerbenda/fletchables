@@ -40,9 +40,9 @@ public class JumpTntEntity extends Entity implements Ownable {
     double d = world.random.nextDouble() * 6.2831854820251465;
     this.setVelocity(-Math.sin(d) * 0.02, 0.20000000298023224, -Math.cos(d) * 0.02);
     this.setFuse(80);
-    this.prevX = x;
-    this.prevY = y;
-    this.prevZ = z;
+    this.lastX = x;
+    this.lastY = y;
+    this.lastZ = z;
     this.causingEntity = igniter;
   }
 
@@ -94,7 +94,7 @@ public class JumpTntEntity extends Entity implements Ownable {
       this.updateWaterState();
       if (this.getWorld().isClient()) {
         this.getWorld()
-            .addParticle(
+            .addParticleClient(
                 ParticleTypes.SMOKE, this.getX(), this.getY() + 0.5, this.getZ(), 0.0, 0.0, 0.0);
       }
     }
@@ -122,13 +122,13 @@ public class JumpTntEntity extends Entity implements Ownable {
 
   @Override
   protected void readCustomDataFromNbt(NbtCompound nbt) {
-    this.setFuse(nbt.getShort(FUSE_NBT_KEY));
+    this.setFuse(nbt.getShort(FUSE_NBT_KEY).orElseThrow());
 
-    if (nbt.contains(BLOCK_STATE_NBT_KEY, 10)) {
+    if (nbt.contains(BLOCK_STATE_NBT_KEY)) {
       this.setBlockState(
           NbtHelper.toBlockState(
               this.getWorld().createCommandRegistryWrapper(RegistryKeys.BLOCK),
-              nbt.getCompound(BLOCK_STATE_NBT_KEY)));
+              nbt.getCompound(BLOCK_STATE_NBT_KEY).orElseThrow()));
     }
   }
 
