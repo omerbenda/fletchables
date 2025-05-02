@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -65,6 +66,16 @@ public class BlockPlacingArrowEntity extends PersistentProjectileEntity {
 
     if (this.shouldPlace && !this.getEntityWorld().isClient()) {
       this.setBlockAtPos(this.getBlockPos());
+      this.shouldPlace = false;
+    }
+  }
+
+  @Override
+  protected void onEntityHit(EntityHitResult entityHitResult) {
+    super.onEntityHit(entityHitResult);
+
+    if (this.shouldPlace && !this.getEntityWorld().isClient()) {
+      this.setBlockAtPos(entityHitResult.getEntity().getBlockPos());
       this.shouldPlace = false;
     }
   }
