@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -69,6 +70,16 @@ public class BlockPlacingArrowEntity extends PersistentProjectileEntity {
     }
   }
 
+  @Override
+  protected void onEntityHit(EntityHitResult entityHitResult) {
+    super.onEntityHit(entityHitResult);
+
+    if (this.shouldPlace && !this.getEntityWorld().isClient()) {
+      this.setBlockAtPos(entityHitResult.getEntity().getBlockPos());
+      this.shouldPlace = false;
+    }
+  }
+
   private void setBlockAtPos(BlockPos pos) {
     this.getEntityWorld().setBlockState(pos, this.blockToPlace.getDefaultState());
   }
@@ -77,7 +88,7 @@ public class BlockPlacingArrowEntity extends PersistentProjectileEntity {
   public void readNbt(NbtCompound nbt) {
     super.readNbt(nbt);
 
-    this.shouldPlace = nbt.getBoolean(SHOULD_PLACE_NBT);
+    this.shouldPlace = nbt.getBoolean(SHOULD_PLACE_NBT, false);
   }
 
   @Override

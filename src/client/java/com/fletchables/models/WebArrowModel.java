@@ -35,7 +35,9 @@ public class WebArrowModel extends EntityModel<ProjectileEntityRenderState> {
         ModelTransform.of(-11.0F, 0.0F, 0.0F, 0.7853982F, 0.0F, 0.0F).withScale(1.75F));
 
     return TexturedModelData.of(
-        modelData.transform((modelTransform) -> modelTransform.scaled(0.9F)), 32, 32);
+        modelData.transform((ModelTransform modelTransform) -> modelTransform.scaled(0.9F)),
+        32,
+        32);
   }
 
   @Override
