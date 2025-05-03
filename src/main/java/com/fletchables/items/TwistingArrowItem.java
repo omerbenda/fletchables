@@ -1,16 +1,22 @@
 package com.fletchables.items;
 
 import com.fletchables.entities.TwistingArrowEntity;
+import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ArrowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.text.Text;
+import net.minecraft.util.Colors;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.function.Consumer;
 
 public class TwistingArrowItem extends ArrowItem {
   public TwistingArrowItem(Item.Settings settings) {
@@ -32,5 +38,17 @@ public class TwistingArrowItem extends ArrowItem {
     twistingArrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
 
     return twistingArrowEntity;
+  }
+
+  @Override
+  public void appendTooltip(
+      ItemStack stack,
+      TooltipContext context,
+      TooltipDisplayComponent displayComponent,
+      Consumer<Text> textConsumer,
+      TooltipType type) {
+    textConsumer.accept(Text.translatable("tooltip.item.twisting_arrow").withColor(Colors.GRAY));
+
+    super.appendTooltip(stack, context, displayComponent, textConsumer, type);
   }
 }

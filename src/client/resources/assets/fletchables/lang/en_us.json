@@ -10,5 +10,14 @@
   "item.fletchables.sub_arrow": "Sub Arrow",
   "item.fletchables.jump_tnt": "Jump TNT",
   "advancements.adventure.has_jump_arrow.title": "Better Than Stairs",
-  "advancements.adventure.has_jump_arrow.description": "Craft a jump arrow at the fletching table"
+  "advancements.adventure.has_jump_arrow.description": "Craft a jump arrow at the fletching table",
+  "tooltip.item.explosive_arrow": "Arrow capable of damaging blocks from afar",
+  "tooltip.item.ender_arrow": "Teleports you to where it lands",
+  "tooltip.item.jump_arrow": "Maggots!",
+  "tooltip.item.twisting_arrow": "Turns your target's head around",
+  "tooltip.item.chorus_arrow": "Teleports your target to a random nearby location",
+  "tooltip.item.water_arrow": "Places water",
+  "tooltip.item.lava_arrow": "Places lava",
+  "tooltip.item.web_arrow": "Places a cobweb",
+  "tooltip.item.sub_arrow": "Faster underwater"
 }

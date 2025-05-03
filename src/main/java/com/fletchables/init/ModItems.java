@@ -10,6 +10,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.text.Text;
+import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
@@ -26,19 +28,31 @@ public class ModItems {
   public static final Item WATER_ARROW =
       register(
           (settings) ->
-              new BlockPlacingArrowItem(settings, ModEntityTypes.WATER_ARROW_ENTITY, Blocks.WATER),
+              new BlockPlacingArrowItem(
+                  settings,
+                  ModEntityTypes.WATER_ARROW_ENTITY,
+                  Blocks.WATER,
+                  Text.translatable("tooltip.item.water_arrow").withColor(Colors.GRAY)),
           new Item.Settings(),
           "water_arrow");
   public static final Item LAVA_ARROW =
       register(
           (settings) ->
-              new BlockPlacingArrowItem(settings, ModEntityTypes.LAVA_ARROW_ENTITY, Blocks.LAVA),
+              new BlockPlacingArrowItem(
+                  settings,
+                  ModEntityTypes.LAVA_ARROW_ENTITY,
+                  Blocks.LAVA,
+                  Text.translatable("tooltip.item.lava_arrow").withColor(Colors.GRAY)),
           new Item.Settings(),
           "lava_arrow");
   public static final Item WEB_ARROW =
       register(
           (settings) ->
-              new BlockPlacingArrowItem(settings, ModEntityTypes.WEB_ARROW_ENTITY, Blocks.COBWEB),
+              new BlockPlacingArrowItem(
+                  settings,
+                  ModEntityTypes.WEB_ARROW_ENTITY,
+                  Blocks.COBWEB,
+                  Text.translatable("tooltip.item.web_arrow").withColor(Colors.GRAY)),
           new Item.Settings(),
           "web_arrow");
   public static final Item SUB_ARROW =

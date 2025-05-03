@@ -1,7 +1,9 @@
 package com.fletchables.items;
 
 import com.fletchables.entities.BlockPlacingArrowEntity;
+import java.util.function.Consumer;
 import net.minecraft.block.Block;
+import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
@@ -9,6 +11,8 @@ import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ArrowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
@@ -17,14 +21,24 @@ import org.jetbrains.annotations.Nullable;
 public class BlockPlacingArrowItem extends ArrowItem {
   private final EntityType<? extends BlockPlacingArrowEntity> entityType;
   private final Block blockToPlace;
+  private final @Nullable Text tooltip;
 
   public BlockPlacingArrowItem(
       Item.Settings settings,
       EntityType<? extends BlockPlacingArrowEntity> entityType,
       Block blockToPlace) {
+    this(settings, entityType, blockToPlace, null);
+  }
+
+  public BlockPlacingArrowItem(
+      Item.Settings settings,
+      EntityType<? extends BlockPlacingArrowEntity> entityType,
+      Block blockToPlace,
+      @Nullable Text tooltip) {
     super(settings);
     this.entityType = entityType;
     this.blockToPlace = blockToPlace;
+    this.tooltip = tooltip;
   }
 
   @Override
@@ -50,5 +64,19 @@ public class BlockPlacingArrowItem extends ArrowItem {
     blockPlacingArrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
 
     return blockPlacingArrowEntity;
+  }
+
+  @Override
+  public void appendTooltip(
+      ItemStack stack,
+      TooltipContext context,
+      TooltipDisplayComponent displayComponent,
+      Consumer<Text> textConsumer,
+      TooltipType type) {
+    if (this.tooltip != null) {
+      textConsumer.accept(this.tooltip);
+    }
+
+    super.appendTooltip(stack, context, displayComponent, textConsumer, type);
   }
 }
